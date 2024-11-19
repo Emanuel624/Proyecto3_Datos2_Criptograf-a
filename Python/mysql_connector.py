@@ -83,7 +83,7 @@ def consultar_tareas_usuario(connection, usuario_id):
     print(f"Tiempo de ejecución: {elapsed_time:.4f} segundos")
     return tareas
 
-
+#Funcion para editar una tarea ya existente
 def editar_tarea(connection, tarea_id, nuevo_titulo, nueva_descripcion, nueva_fecha_vencimiento):
     """
     Edita una tarea en la base de datos.
@@ -100,8 +100,6 @@ def editar_tarea(connection, tarea_id, nuevo_titulo, nueva_descripcion, nueva_fe
     cursor.close()
     elapsed_time = time.time() - start_time
     print(f"Tarea con ID {tarea_id} editada con éxito. Tiempo de ejecución: {elapsed_time:.4f} segundos")
-
-
 
 # Eliminar tareas de un usuario de la BD
 def eliminar_tarea(connection, tarea_id):

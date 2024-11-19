@@ -3,12 +3,13 @@ from ttkbootstrap.constants import *
 from tkinter import messagebox
 from tkinter import simpledialog
 
+#Importar funciones de otro archivo
 from mysql_connector import consultar_usuarios
 from mysql_connector import insertar_tarea
-from mysql_connector import consultar_tareas_usuario  # Importar la función
+from mysql_connector import consultar_tareas_usuario  
 from mysql_connector import editar_tarea
 from mysql_connector import eliminar_tarea
-from mysql_connector import connection  # Importar conexión desde el otro archivo
+from mysql_connector import connection 
 
 
 
@@ -19,10 +20,8 @@ class TaskManagerApp:
         self.root.geometry("800x600")
         self.style = ttk.Style(theme="cosmo")
 
-        # Simulación de base de datos
-        self.tasks = []
-
         self.create_login_screen()
+
 
     #Ventana de registro de usuarios
     def create_login_screen(self): 
@@ -54,6 +53,7 @@ class TaskManagerApp:
             bootstyle="success-outline"
         ).pack(pady=20)
 
+
     #Valida los datos de inicio de sesion
     def validate_login(self):
         # Obtener credenciales ingresadas por el usuario
@@ -75,7 +75,7 @@ class TaskManagerApp:
         messagebox.showerror("Error", "Usuario o contraseña incorrectos")
 
 
-    #Ventan principal con funcionalidades
+    #Ventana principal con funcionalidades
     def create_main_menu(self):
         for widget in self.root.winfo_children():
             widget.destroy()
@@ -125,11 +125,13 @@ class TaskManagerApp:
             bootstyle="secondary-outline"
         ).pack(pady=10, fill='x')
 
+
     #Funcion para cerrar sesion
     def logout(self):
         """Cerrar sesión y regresar a la pantalla de inicio de sesión."""
         self.tasks = []  # Limpiar las tareas, opcional según el caso
         self.create_login_screen()
+
 
     #Ventana para añadir una nueva tarea en la base de
     def create_task_screen(self):
@@ -172,7 +174,8 @@ class TaskManagerApp:
             bootstyle="danger-outline"
         ).pack(pady=5)
 
-    #Agregar una tarea
+
+    #Ventana para Agregar una tarea
     def save_task(self, title_entry, description_entry, due_date_entry):
         # Obtener los valores ingresados
         task_name = title_entry.get()
@@ -191,6 +194,7 @@ class TaskManagerApp:
             messagebox.showerror("Error", "Todos los campos son obligatorios")
 
 
+    #Ventana para mirar las tareas activas
     def view_tasks_screen(self):
         # Limpiar la ventana actual
         for widget in self.root.winfo_children():
@@ -229,10 +233,8 @@ class TaskManagerApp:
         ).pack(pady=20)
 
 
-    
+    #Ventana para actualizar una tarea
     def update_task_screen(self):
-        from mysql_connector import consultar_tareas_usuario, editar_tarea  # Importar funciones necesarias
-
         # Limpiar la ventana actual
         for widget in self.root.winfo_children():
             widget.destroy()
@@ -315,6 +317,7 @@ class TaskManagerApp:
         ).pack(pady=20)
 
 
+    #Ventana para eliminar una tarea.
     def delete_task_screen(self):
         # Limpiar la ventana actual
         for widget in self.root.winfo_children():
